@@ -51,13 +51,13 @@ fn main() -> Result<(), Error> {
         }
 
         if input.update(&event) {
-            if input.key_pressed(VirtualKeyCode::Escape) || input.quit() {
+            if input.key_pressed(VirtualKeyCode::Escape) || input.close_requested() {
                 *control_flow = ControlFlow::Exit;
                 return;
             }
 
             if let Some(size) = input.window_resized() {
-                if let Err(err) = screen.resize_surface(size.width, size.height) {
+                if let Err(_err) = screen.resize_surface(size.width, size.height) {
                     *control_flow = ControlFlow::Exit;
                     return;
                 }
