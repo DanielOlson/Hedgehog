@@ -1,10 +1,12 @@
 
 #[derive(Clone, Copy, Debug, Default)]
+// You can add stuff here if you want
 pub struct Cell {
     pub x: u32,
     pub y: u32,
     pub last_voltage: f32,
     pub voltage: f32,
+    pub raw_val: f32,
 }
 
 impl Cell {
@@ -16,9 +18,8 @@ impl Cell {
 
     // Update this for late cell updates
     pub fn post_update(&mut self) {
-        self.voltage += (self.y as f32).sin() + (self.x as f32).cos() / 5.0;
-        self.voltage = (self.voltage + self.last_voltage) / 2.2;
-
+        self.raw_val += (self.voltage * self.voltage);
+        self.voltage = self.raw_val.sin();
     }
 
     // Change this if you want to change the color scheme

@@ -10,7 +10,7 @@ pub struct Grid{
 impl Grid {
 
     pub fn new(width: usize, height: usize) -> Grid {
-        let mut new_cells = vec![Cell { x: 0, y: 0, last_voltage: 0.0, voltage: 0.0 }; width * height];
+        let mut new_cells = vec![Cell::default(); width * height];
 
         // Change this if you want to change initial conditions
         for x in 0..width {
